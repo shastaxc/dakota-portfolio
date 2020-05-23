@@ -1,0 +1,15 @@
+<ng-container *ngIf="isHorizontal; else isSidenav">
+  <div class="nav-links-group flex-row">
+    <a mat-button
+       class="nav-link-btn"
+       routerLink="/resume"
+       (click)="closeSidenav()">
+      <i class="material-icons">description</i>
+      <span class="mat-h1 nav-link-text">Resume</span>
+    </a>
+  </div>
+</ng-container>
+<ng-template #isSidenav>
+  <mat-nav-list>
+  </mat-nav-list>
+</ng-template>
