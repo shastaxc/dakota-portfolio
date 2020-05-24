@@ -7,8 +7,8 @@
 }
 
 .tile-bg {
-  background-image: url(/assets/images/jeans-lg.png);
-  background-repeat: repeat;
+  background-image: url(/assets/images/teal-fabric.jpg);
+  background-size: cover;
 }
 
 .nametag-container {
@@ -24,6 +24,7 @@
     max-width: 98%;
     .topper {
       text-align: center;
+      padding: 0.2rem;
       background-color: mat-color($accent-palette, A200);
       color: mat-contrast($accent-palette, A200);
       border-radius: 2rem 2rem 0 0;
