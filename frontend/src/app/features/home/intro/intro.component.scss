@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'breakpoints';
 
 .full-page-intro {
   width: 100%;
@@ -7,8 +8,12 @@
 }
 
 .tile-bg {
-  background-image: url(/assets/images/teal-fabric.jpg);
+  background-image: url(/assets/images/teal-fabric-lg.jpg);
   background-size: cover;
+  @media #{$size-lt-lg} {
+    background-image: url(/assets/images/teal-fabric-md.jpg);
+    background-size: cover;
+  }
 }
 
 .nametag-container {
@@ -29,10 +34,10 @@
       color: mat-contrast($accent-palette, A200);
       border-radius: 2rem 2rem 0 0;
       .hello {
-        @extend %typography-display-3;
+        @include typography-display-3();
       }
       .my-name-is {
-        @extend %typography-display-1;
+        @include typography-display-1();
       }
     }
     .center {
@@ -49,7 +54,7 @@
         background-color: #fdfdfd;
         color: black;
         padding: 0.5rem 5rem;
-        &.isMobile {
+        @media #{$size-xs} {
           flex-grow: 1;
           text-align: center;
           background-color: #fdfdfd;
@@ -57,16 +62,16 @@
           padding: 0.5rem 3rem;
         }
         .name {
-          @extend %typography-display-4;
-          @extend %font-permanent-marker;
-          &.isMobile {
-            @extend %typography-display-3;
-            @extend %font-permanent-marker;
+          @include typography-display-4();
+          @include font-permanent-marker();
+          @media #{$size-xs} {
+            @include typography-display-3();
+            @include font-permanent-marker();
           }
         }
         .brand {
-          @extend %typography-display-1;
-          @extend %font-permanent-marker;
+          @include typography-display-1();
+          @include font-permanent-marker();
         }
       }
     }
