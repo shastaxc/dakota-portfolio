@@ -48,18 +48,6 @@ $background-palette: map-get($theme, background);
 @mixin typography-button() { font: 500 14px/14px Roboto, "Helvetica Neue", sans-serif; }
 @mixin typography-input() { font: 400 inherit/1.125 Roboto, "Helvetica Neue", sans-serif; }
 
-@mixin font-trajan-regular() {
-  font-family: trajan-pro-3, serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@mixin font-kepler-std-subhead-italic() {
-  font-family: kepler-std-subhead, serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
 @mixin font-permanent-marker() {
   font-family: 'Permanent Marker', cursive;
 }

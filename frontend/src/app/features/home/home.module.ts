@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '@/shared/shared.module';
@@ -10,7 +11,7 @@ import { homeRoutes } from './home.routes';
 const ROUTES = [...homeRoutes];
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES), SharedModule],
+  imports: [RouterModule.forChild(ROUTES), SharedModule, FlexLayoutModule],
   declarations: [HomeComponent, IntroComponent, ProjectsComponent],
 })
 export class HomeModule {}

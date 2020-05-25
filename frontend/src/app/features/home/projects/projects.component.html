@@ -1,1 +1,45 @@
-<p>projects works!</p>
+<div class="project-section">
+  <h1 class="mat-display-2 text-center">Projects</h1>
+
+  <mat-grid-list class="projects-list"
+                 [cols]="numCols"
+                 rowHeight="1:0.8"
+                 gutterSize="20">
+    <mat-grid-tile>
+      <mat-card matRipple
+                class="project-tile">
+        <div class="title">
+          RVCT
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+        <div class="web-preview">
+          <img src="/assets/images/RVCT-preview.jpg" />
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card matRipple
+                class="project-tile">
+        <div class="title">
+          KeyTerrain
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+        <div class="web-preview">
+          <img src="/assets/images/KeyTerrain-preview.png" />
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card matRipple
+                class="project-tile">
+        <div class="title">
+          Training Portal
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+        <div class="web-preview">
+          <img src="/assets/images/TrainingPortal-preview.jpg" />
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
