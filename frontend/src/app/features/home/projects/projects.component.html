@@ -1,45 +1,142 @@
-<div class="project-section">
-  <h1 class="mat-display-2 text-center">Projects</h1>
+<div class="project-section-wrapper"
+     [@slideLeftRight]="showingProject ? 'show-right' : 'show-left'">
+  <div class="project-list-section">
+    <div class="section-content">
+      <div class="section-header">
+        <h1 class="mat-display-2 text-center">Projects</h1>
+      </div>
 
-  <mat-grid-list class="projects-list"
-                 [cols]="numCols"
-                 rowHeight="1:0.8"
-                 gutterSize="20">
-    <mat-grid-tile>
-      <mat-card matRipple
-                class="project-tile">
-        <div class="title">
-          RVCT
-        </div>
-        <mat-divider [inset]="true"></mat-divider>
-        <div class="web-preview">
-          <img src="/assets/images/RVCT-preview.jpg" />
-        </div>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card matRipple
-                class="project-tile">
-        <div class="title">
-          KeyTerrain
-        </div>
-        <mat-divider [inset]="true"></mat-divider>
-        <div class="web-preview">
-          <img src="/assets/images/KeyTerrain-preview.png" />
-        </div>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card matRipple
-                class="project-tile">
-        <div class="title">
-          Training Portal
-        </div>
-        <mat-divider [inset]="true"></mat-divider>
-        <div class="web-preview">
-          <img src="/assets/images/TrainingPortal-preview.jpg" />
-        </div>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+      <mat-grid-list class="projects-list"
+                     [cols]="numCols"
+                     rowHeight="1:0.8"
+                     gutterSize="20">
+        <mat-grid-tile>
+          <mat-card matRipple
+                    class="project-tile"
+                    (click)="showProject('RVCT')">
+            <div class="title">
+              RVCT
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+            <div class="web-preview">
+              <img src="/assets/images/RVCT-preview.jpg" />
+            </div>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card matRipple
+                    class="project-tile">
+            <div class="title">
+              KeyTerrain
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+            <div class="web-preview">
+              <img src="/assets/images/KeyTerrain-preview.png" />
+            </div>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card matRipple
+                    class="project-tile">
+            <div class="title">
+              Training Portal
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+            <div class="web-preview">
+              <img src="/assets/images/TrainingPortal-preview.jpg" />
+            </div>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <div class="project-detail-section">
+    <div class="section-content">
+      <div class="section-header">
+        <button mat-raised-button
+                color="primary"
+                (click)="showingProject = null">
+          <mat-icon>arrow_back</mat-icon><span>Back</span>
+        </button>
+        <h1 class="mat-display-2 text-center">Project Details</h1>
+      </div>
+
+      <div [ngSwitch]="showingProject">
+        <ng-container *ngSwitchCase="'RVCT'">
+          <mat-card>
+            <mat-card-title>
+              Reconfigurable Virtual Collective Trainer
+            </mat-card-title>
+            <mat-card-subtitle>
+              <a href="https://ste-rvct.com"
+                 target="_blank"><span>https://ste-rvct.com</span>
+              </a>
+            </mat-card-subtitle>
+            <mat-card-content>
+              <div class="w-100 text-center">
+                <a href="https://ste-rvct.com"
+                   target="_blank">
+                  <img src="/assets/images/RVCT-preview.jpg" />
+                </a>
+              </div>
+              <h2>Description</h2>
+              <p>
+                RVCT is a program developed to fulfill a contract under the U.S.
+                Department
+                of Defense. It provides the capability for military personnel to train in
+                a
+                virtual, collective environment. The hardware stations are assembled of
+                reconfigurable kits to simulate a variety of real-world military vehicles
+                including ground and air.
+              </p>
+              <p>
+                The website acts as a portal which provides links to related developer
+                tools such as Jira, Bitbucket and a scheduling system which allows
+                developers to schedule time to use shared resources. For administrative
+                users, dashboards are provided to aid in program management.
+              </p>
+              <p>
+                There are plans for more public features such as a news feed, and a
+                point-of-need calculator. These will allow base commanders across the
+                country to determine what steps are required to conduct a training event
+                at their location.
+              </p>
+              <h2>Tech Stack</h2>
+              <dl>
+                <dt>Frontend</dt>
+                <dd>Angular using Material Design.</dd>
+                <dt>Backend</dt>
+                <dd>NestJS (a Typescript-based framework) with a Postgres
+                  database for application data, and an LDAP database for user data.</dd>
+                <dt>Deployment</dt>
+                <dd>Frontend and backend applications are hosted in Docker
+                  containers on RHEL8 Linux servers. The application and database servers
+                  are air-gapped for security, and an Nginx reverse proxy is set
+                  up on a DMZ server to handle traffic. A separate SMTP relay exists for
+                  sending emails.</dd>
+              </dl>
+              <h2>Dakota's Impact</h2>
+              <ul>
+                <li>Designed database structures for managing hardware inventory.</li>
+                <li>Created Docker build files and docker-compose startup scripts for
+                  development, staging, and production environments.</li>
+                <li>Sever setup and deployments.</li>
+                <li>Planned sprints and managed tasks with Jira.</li>
+                <li>Managed Git version control with Bitbucket.</li>
+                <li>Wrote documentation with Confluence.</li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <mat-card>
+            <mat-card-title>
+              No project found called {{ showingProject }}
+            </mat-card-title>
+          </mat-card>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>

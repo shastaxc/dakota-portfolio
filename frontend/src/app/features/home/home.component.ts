@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
+import { Component } from '@angular/core';
+
+import { ProjectName } from '@/library/constants/projects.const';
 
 @Component({
   selector: 'dport-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  isMobileDevice: boolean;
-
-  constructor(private deviceService: DeviceDetectorService) {}
-
-  ngOnInit(): void {
-    this.isMobileDevice = this.deviceService.isMobile();
-  }
+export class HomeComponent {
+  showingProject: ProjectName = null;
 }

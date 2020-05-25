@@ -1,12 +1,35 @@
 @import 'variables';
+@import 'breakpoints';
 
-.project-section {
+.project-section-wrapper {
+  width: 200%;
+  height: 100%;
+  display: flex;
+}
+
+.project-list-section,
+.project-detail-section {
+  width: 50%;
   height: 100%;
   box-sizing: border-box;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 3rem 1rem;
+
+  .section-content {
+    max-width: 1280px;
+    padding: 3rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    .section-header {
+      position: relative;
+      button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        @media #{$size-xs} {
+          position: relative;
+        }
+      }
+    }
+  }
 }
 
 .projects-list {
@@ -37,6 +60,18 @@
       img {
         width: 100%;
       }
+    }
+  }
+}
+
+.project-detail-section {
+  mat-card {
+    img {
+      width: 500px;
+      max-width: 100%;
+    }
+    dt {
+      font-weight: bold;
     }
   }
 }
