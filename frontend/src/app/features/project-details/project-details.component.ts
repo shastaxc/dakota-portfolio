@@ -18,8 +18,8 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params: any) => {
-      console.log('params', params);
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.showingProject = params.projectName;
     });
   }
 }
