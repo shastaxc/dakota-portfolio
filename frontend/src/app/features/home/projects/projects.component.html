@@ -1,19 +1,15 @@
-<div class="project-section-wrapper"
-     [@slideLeftRight]="showingProject ? 'show-right' : 'show-left'">
-  <div class="project-list-section">
-    <div class="section-content">
-      <div class="section-header">
-        <h1 class="mat-display-2 text-center">Projects</h1>
-      </div>
+<div class="project-list-section">
+  <div class="section-content">
+    <h1 class="mat-display-2 text-center">Projects</h1>
 
-      <mat-grid-list class="projects-list"
-                     [cols]="numCols"
-                     rowHeight="1:0.8"
-                     gutterSize="20">
-        <mat-grid-tile>
-          <mat-card matRipple
-                    class="project-tile"
-                    (click)="showingProject = RVCT">
+    <mat-grid-list class="projects-list"
+                   [cols]="numCols"
+                   rowHeight="1:0.8"
+                   gutterSize="20">
+      <mat-grid-tile>
+        <a class="project-tile"
+           [routerLink]="['project', RVCT]">
+          <mat-card matRipple>
             <div class="title">
               RVCT
             </div>
@@ -22,11 +18,12 @@
               <img src="/assets/images/RVCT-preview.jpg" />
             </div>
           </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card matRipple
-                    class="project-tile"
-                    (click)="showingProject = KEY_TERRAIN">
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <a class="project-tile"
+           [routerLink]="['project', KEY_TERRAIN]">
+          <mat-card matRipple>
             <div class="title">
               KeyTerrain
             </div>
@@ -35,11 +32,12 @@
               <img src="/assets/images/KeyTerrain-preview.png" />
             </div>
           </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card matRipple
-                    class="project-tile"
-                    (click)="showingProject = TRAINING_READINESS_PORTAL">
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <a class="project-tile"
+           [routerLink]="['project', TRAINING_READINESS_PORTAL]">
+          <mat-card matRipple>
             <div class="title">
               Training Portal
             </div>
@@ -48,213 +46,8 @@
               <img src="/assets/images/TrainingPortal-preview.jpg" />
             </div>
           </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-  </div>
-
-  <div class="project-detail-section">
-    <div class="section-content">
-      <div class="section-header">
-        <button mat-raised-button
-                color="primary"
-                (click)="showingProject = null">
-          <mat-icon>arrow_back</mat-icon><span>Back</span>
-        </button>
-        <h1 class="mat-display-2 text-center">Project Details</h1>
-      </div>
-
-      <div [ngSwitch]="showingProject">
-        <ng-container *ngSwitchCase="RVCT">
-          <mat-card>
-            <mat-card-title>
-              Reconfigurable Virtual Collective Trainer
-            </mat-card-title>
-            <mat-card-subtitle>
-              <a href="https://ste-rvct.com"
-                 target="_blank"><span class="mat-h2">https://ste-rvct.com</span>
-              </a>
-            </mat-card-subtitle>
-            <mat-divider [inset]="true"></mat-divider>
-            <mat-card-content>
-              <div class="w-100 text-center">
-                <a href="https://ste-rvct.com"
-                   target="_blank">
-                  <img src="/assets/images/RVCT-preview.jpg" />
-                </a>
-              </div>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Description</h2>
-              <p>
-                RVCT is a program developed to fulfill a contract under the U.S.
-                Department of Defense. It provides the capability for military personnel
-                to train in a virtual, collective environment. The hardware stations are
-                assembled of reconfigurable kits to simulate a variety of real-world
-                military vehicles including ground and air.
-              </p>
-              <p>
-                The website acts as a portal which provides links to related developer
-                tools such as Jira, Bitbucket and a scheduling system which allows
-                developers to schedule time to use shared resources. For administrative
-                users, dashboards are provided to aid in program management.
-              </p>
-              <p>
-                There are plans for more public features such as a news feed, and a
-                point-of-need calculator. These will allow base commanders across the
-                country to determine what steps are required to conduct a training event
-                at their location.
-              </p>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Tech Stack</h2>
-              <dl>
-                <dt>Frontend</dt>
-                <dd>Angular using Material Design.</dd>
-                <dt>Backend</dt>
-                <dd>NestJS (a Typescript-based framework) with a Postgres
-                  database for application data, and an LDAP database for user data.</dd>
-                <dt>Deployment</dt>
-                <dd>Frontend and backend applications are hosted in Docker
-                  containers on RHEL8 Linux servers. The application and database servers
-                  are air-gapped for security, and an Nginx reverse proxy is set
-                  up on a DMZ server to handle traffic. A separate SMTP relay exists for
-                  sending emails.</dd>
-              </dl>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Dakota's Impact</h2>
-              <ul>
-                <li>Designed database structures for managing hardware inventory.</li>
-                <li>Created Docker build files and docker-compose startup scripts for
-                  development, staging, and production environments.</li>
-                <li>Established application security using JWT and LDAP authentication.
-                </li>
-                <li>Sever setup and deployments.</li>
-                <li>Planned and managed sprints in an agile development lifecycle.</li>
-              </ul>
-            </mat-card-content>
-          </mat-card>
-        </ng-container>
-        <ng-container *ngSwitchCase="KEY_TERRAIN">
-          <mat-card>
-            <mat-card-title>
-              Key Terrain
-            </mat-card-title>
-            <mat-card-subtitle>
-              <a href="https://keyterrain.io"
-                 target="_blank"><span class="mat-h2">https://keyterrain.io</span>
-              </a>
-            </mat-card-subtitle>
-            <mat-divider [inset]="true"></mat-divider>
-            <mat-card-content>
-              <div class="w-100 text-center">
-                <a href="https://keyterrain.io"
-                   target="_blank">
-                  <img src="/assets/images/KeyTerrain-preview.png" />
-                </a>
-              </div>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Description</h2>
-              <p>
-                Key Terrain was conceived due to a recognized need in the training
-                simulation industry. Many training simulation programs have a contractual
-                requirement to meet realism requirements. One of the most difficult parts
-                of meeting this requirement is providing terrain, trees, buildings, and
-                infrastructure that accurately reflects the true on-the-ground reality.
-              </p>
-              <p>
-                An R&D effort at Cole Engineering began in order to generate terrain files
-                in various formats. A web interface was determined to be the most
-                convenient way for customers to select their area of interest and place
-                orders. This became the first e-commerce product developed by Cole
-                Engineering Services.
-              </p>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Tech Stack</h2>
-              <dl>
-                <dt>Frontend</dt>
-                <dd>Angular using Bootstrap and JHipster (a highly-opinionized framework
-                  that integrates frontend, backend, and deployment).</dd>
-                <dt>Backend</dt>
-                <dd>Spring Boot with a Postgres
-                  database (provided by the JHipster framework).</dd>
-                <dt>Deployment</dt>
-                <dd>AWS's ElasticBeanstalk was used as the hosting environment. Deployment
-                  was achieved with using JHipster CLI commands after AWS CLI
-                  configuration.</dd>
-              </dl>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Dakota's Impact</h2>
-              <ul>
-                <li>Developed database models.</li>
-                <li>Designed and implemented web features such as an interactive map,
-                  invoicing, order history, and administrative dashboard.</li>
-                <li>Integrated third-party e-commerce services such as Stripe and TaxJar.
-                </li>
-                <li>Planned and managed tasks using Jira.</li>
-              </ul>
-            </mat-card-content>
-          </mat-card>
-        </ng-container>
-        <ng-container *ngSwitchCase="TRAINING_READINESS_PORTAL">
-          <mat-card>
-            <mat-card-title>
-              Training Readiness Portal
-            </mat-card-title>
-            <mat-card-subtitle>
-              <a href="https://training-portal-app.shastaworks.com"
-                 target="_blank">
-                <span class="mat-h2">https://training-portal-app.shastaworks.com</span>
-              </a>
-            </mat-card-subtitle>
-            <mat-divider [inset]="true"></mat-divider>
-            <mat-card-content>
-              <div class="w-100 text-center">
-                <a href="https://training-portal-app.shastaworks.com"
-                   target="_blank">
-                  <img src="/assets/images/TrainingPortal-preview.jpg" />
-                </a>
-              </div>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Description</h2>
-              <p>
-                This training readiness portal was never fully developed, but was meant to
-                be a prototype to support a contract proposal. The potential customer was
-                an organization that provided training services to multiple companies in
-                various subjects. They required a logistics management solution to assist
-                in coordinating class times, registration, trainer availability, and
-                resource availability. Their current management methods involved sharing
-                Excel documents via email. It seemed that a website would be cleaner,
-                faster, and more reliable.
-              </p>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Tech Stack</h2>
-              <dl>
-                <dt>Frontend</dt>
-                <dd>Angular</dd>
-                <dt>Backend</dt>
-                <dd>None required for this mock up.</dd>
-                <dt>Deployment</dt>
-                <dd>Slight modifications were made to Angular routing in order to allow
-                  demoing the application from the local file system.</dd>
-              </dl>
-              <mat-divider [inset]="true"></mat-divider>
-              <h2>Dakota's Impact</h2>
-              <ul>
-                <li>Collaborated closely with business development to collect and tune
-                  requirements.</li>
-                <li>Provided UX to meet the customer's needs when even they weren't sure
-                  what they wanted.</li>
-              </ul>
-            </mat-card-content>
-          </mat-card>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <mat-card>
-            <mat-card-title>
-              No project found called {{ showingProject }}
-            </mat-card-title>
-          </mat-card>
-        </ng-container>
-      </div>
-    </div>
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
 </div>

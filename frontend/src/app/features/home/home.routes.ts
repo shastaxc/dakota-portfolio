@@ -6,5 +6,8 @@ export const homeRoutes: Route[] = [
   {
     path: '',
     component: HomeComponent,
+    data: {
+      animation: 'HomePage',
+    },
   },
 ];
