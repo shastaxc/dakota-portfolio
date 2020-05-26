@@ -27,6 +27,10 @@ import { ProjectName } from '@/library/constants/projects.const';
   ],
 })
 export class ProjectsComponent implements OnInit {
+  RVCT = ProjectName.RVCT;
+  KEY_TERRAIN = ProjectName.KEY_TERRAIN;
+  TRAINING_READINESS_PORTAL = ProjectName.TRAINING_READINESS_PORTAL;
+
   showingProject: ProjectName;
   numCols = 1;
 
@@ -45,12 +49,5 @@ export class ProjectsComponent implements OnInit {
       );
       this.numCols = this.gridColsByBreakpoint.get(change.mqAlias);
     });
-  }
-
-  showProject(projectNameStr: string): void {
-    const projectName = ProjectName[projectNameStr];
-    if (projectName) {
-      this.showingProject = projectName;
-    }
   }
 }
