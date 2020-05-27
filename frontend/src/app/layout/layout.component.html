@@ -4,6 +4,8 @@
   <dport-navbar></dport-navbar>
 </div>
 
+<div class="bg-image"></div>
+
 <!-- Sidenav Container - wraps everything that should get overlay when open -->
 <mat-sidenav-container fullscreen
                        (backdropClick)="closeSidenav()"
@@ -22,13 +24,10 @@
 
   <!-- Contrary to its name, this is actually content outside the sidenav -->
   <mat-sidenav-content #mainScrollElement>
-    <div class="viewport-wrapper">
-      <div class="bg-image"></div>
-      <!-- Main content -->
-      <div id="router-outlet-wrapper"
-           [@routeAnimations]="prepareRoute(outlet)">
-        <router-outlet #outlet="outlet"></router-outlet>
-      </div>
+    <!-- Main content -->
+    <div id="router-outlet-wrapper"
+         [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
     </div>
 
     <!-- Footer -->
