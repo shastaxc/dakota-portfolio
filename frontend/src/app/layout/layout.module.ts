@@ -3,7 +3,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
-import { RouterScrollService } from '@/library/services/router-scroll/router-scroll.service';
 import { SharedModule } from '@/shared/shared.module';
 import { NavLinksComponent } from './navbar/nav-links/nav-links.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,7 +26,7 @@ const ROUTES = [...layoutRoutes];
     SidenavInnardsComponent,
     NavLinksComponent,
   ],
-  providers: [SidenavService, RouterScrollService],
+  providers: [SidenavService],
   exports: [LayoutComponent],
 })
 export class LayoutModule {}

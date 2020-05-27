@@ -1,13 +1,13 @@
-import { ICustomRoute, RouteScrollBehaviour } from '@/library/models/router-scroll.model';
+import { Route } from '@angular/router';
+
 import { HomeComponent } from './home.component';
 
-export const homeRoutes: ICustomRoute[] = [
+export const homeRoutes: Route[] = [
   {
     path: '',
     component: HomeComponent,
     data: {
       animation: 'HomePage',
-      scrollBehavior: RouteScrollBehaviour.KEEP_POSITION,
     },
   },
 ];

@@ -9,7 +9,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 
-import { RouterScrollService } from '@/library/services/router-scroll/router-scroll.service';
 import { SidenavService } from './sidenav.service';
 
 @Component({
@@ -22,9 +21,6 @@ export class LayoutComponent implements AfterViewInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
   @ViewChild('sidenavContainer', { read: ElementRef }) sidenavContainer: ElementRef;
 
-  @ViewChild('mainScrollElement', { read: ElementRef })
-  private mainScrollElement!: ElementRef;
-
   headerHeight: number;
 
   get navbarEl(): HTMLDivElement {
@@ -35,10 +31,7 @@ export class LayoutComponent implements AfterViewInit {
     return this.sidenavContainer.nativeElement;
   }
 
-  constructor(
-    private sidenavService: SidenavService,
-    private routerScroll: RouterScrollService
-  ) {}
+  constructor(private sidenavService: SidenavService) {}
 
   ngAfterViewInit(): void {
     // Get header height
@@ -56,9 +49,6 @@ export class LayoutComponent implements AfterViewInit {
     this.sidenavService.isSidenavOpen$.subscribe((state: boolean) => {
       state ? this.sidenav.open() : this.sidenav.close();
     });
-
-    this.routerScroll.disableScrollDefaultViewport();
-    this.routerScroll.setCustomViewportToScroll(this.mainScrollElement.nativeElement);
   }
 
   toggleSidenav(): void {
