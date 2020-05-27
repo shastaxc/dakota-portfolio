@@ -22,10 +22,13 @@
 
   <!-- Contrary to its name, this is actually content outside the sidenav -->
   <mat-sidenav-content #mainScrollElement>
-    <!-- Main content -->
-    <div id="router-outlet-wrapper"
-         [@routeAnimations]="prepareRoute(outlet)">
-      <router-outlet #outlet="outlet"></router-outlet>
+    <div class="viewport-wrapper">
+      <div class="bg-image"></div>
+      <!-- Main content -->
+      <div id="router-outlet-wrapper"
+           [@routeAnimations]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
     </div>
 
     <!-- Footer -->
