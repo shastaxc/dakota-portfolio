@@ -6,15 +6,18 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { RouterOutlet } from '@angular/router';
 import { of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 
+import { slideInAnimation } from '@/library/constants/animations.const';
 import { SidenavService } from './sidenav.service';
 
 @Component({
   selector: 'dport-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
+  animations: [slideInAnimation],
 })
 export class LayoutComponent implements AfterViewInit {
   @ViewChild('navbar') navbar: ElementRef;
@@ -64,5 +67,9 @@ export class LayoutComponent implements AfterViewInit {
   private onResize(): void {
     this.headerHeight = this.navbarEl.offsetHeight;
     this.sidenavContainerEl.style.top = this.headerHeight + 'px';
+  }
+
+  prepareRoute(outlet: RouterOutlet): string {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }
