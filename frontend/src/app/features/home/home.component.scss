@@ -7,9 +7,11 @@
 }
 
 .tile-bg {
+  background-color: mat-color($background-palette, background);
   background-image: url(/assets/images/teal-fabric-lg.jpg);
   background-size: cover;
   @media #{$size-lt-lg} {
+    background-color: mat-color($background-palette, background);
     background-image: url(/assets/images/teal-fabric-md.jpg);
     background-size: cover;
   }
