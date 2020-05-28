@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProjectName } from '@/library/constants/projects.const';
+import { WindowScrollingService } from '@/library/services/window-scrolling.service';
 
 @Component({
   selector: 'dport-project-details',
@@ -15,11 +16,16 @@ export class ProjectDetailsComponent implements OnInit {
 
   showingProject: ProjectName;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private scrollServ: WindowScrollingService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
       this.showingProject = params.projectName;
     });
+
+    this.scrollServ.scrollToTop();
   }
 }

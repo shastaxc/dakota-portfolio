@@ -5,17 +5,29 @@ import { Inject, Injectable } from '@angular/core';
 export class WindowScrollingService {
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
-  // Disable the scrolling feature on the main viewport.
+  /**
+   * Disable the scrolling of the main viewport.
+   */
   disable(): void {
     this.getScrollContainer().classList.add('no-scroll');
   }
 
-  // Re-enable the scrolling feature on the main viewport.
+  /**
+   * Re-enable the scrolling of the main viewport.
+   */
   enable(): void {
     this.getScrollContainer().classList.remove('no-scroll');
   }
 
   getScrollContainer(): HTMLElement {
-    return this.doc.querySelector('.mat-sidenav-container');
+    return this.doc.querySelector('.mat-sidenav-content');
+  }
+
+  /**
+   * Scroll to the top of the main viewport.
+   */
+  scrollToTop(): void {
+    const opt: ScrollToOptions = { top: 0 };
+    this.getScrollContainer().scrollTo(opt);
   }
 }

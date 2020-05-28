@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 
 import { ProjectName } from '@/library/constants/projects.const';
+import { WindowScrollingService } from '@/library/services/window-scrolling.service';
 
 @Component({
   selector: 'dport-projects',
@@ -22,7 +23,10 @@ export class ProjectsComponent implements OnInit {
     ['xs', 1],
   ]);
 
-  constructor(private mediaObserver: MediaObserver) {}
+  constructor(
+    private mediaObserver: MediaObserver,
+    private scrollServ: WindowScrollingService
+  ) {}
 
   ngOnInit(): void {
     this.mediaObserver.asObservable().subscribe((changes: MediaChange[]) => {
@@ -31,5 +35,7 @@ export class ProjectsComponent implements OnInit {
       );
       this.numCols = this.gridColsByBreakpoint.get(change.mqAlias);
     });
+
+    this.scrollServ.scrollToTop();
   }
 }
