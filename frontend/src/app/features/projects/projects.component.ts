@@ -1,4 +1,3 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 
@@ -8,23 +7,6 @@ import { ProjectName } from '@/library/constants/projects.const';
   selector: 'dport-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
-  animations: [
-    trigger('slideLeftRight', [
-      state(
-        'show-left',
-        style({
-          transform: 'translateX(0)',
-        })
-      ),
-      state(
-        'show-right',
-        style({
-          transform: 'translateX(-50%)',
-        })
-      ),
-      transition('show-left <=> show-right', [animate('200ms ease-in')]),
-    ]),
-  ],
 })
 export class ProjectsComponent implements OnInit {
   RVCT = ProjectName.RVCT;
