@@ -12,8 +12,8 @@ import { ProjectsModule } from './features/projects/projects.module';
 import { ResumeModule } from './features/resume/resume.module';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
-import { AppEffects } from './store/effects/app.effects';
-import { appMetaReducers, appReducers } from './store/reducers/app.reducers';
+import { AppEffects } from './store/app.effects';
+import { appMetaReducers, appReducers } from './store/app.reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 

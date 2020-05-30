@@ -3,7 +3,7 @@
     <h1 class="mat-display-2 text-center">Projects</h1>
 
     <mat-grid-list class="projects-list"
-                   [cols]="numCols"
+                   [cols]="numCols$ | async"
                    rowHeight="1:0.8"
                    gutterSize="20">
       <mat-grid-tile>

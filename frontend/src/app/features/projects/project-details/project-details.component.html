@@ -2,7 +2,7 @@
   <div class="section-content">
     <h1 class="mat-display-2 text-center">Project Details</h1>
 
-    <div [ngSwitch]="showingProject">
+    <div [ngSwitch]="showingProject$ | async">
       <ng-container *ngSwitchCase="RVCT">
         <mat-card>
           <mat-card-title>
@@ -191,7 +191,7 @@
       <ng-container *ngSwitchDefault>
         <mat-card>
           <mat-card-title>
-            No project found called {{ showingProject }}
+            No project found called {{ (showingProject$ | async) }}
           </mat-card-title>
         </mat-card>
       </ng-container>

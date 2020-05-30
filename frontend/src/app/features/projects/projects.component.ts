@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ProjectName } from '@/library/constants/projects.const';
 import { WindowScrollingService } from '@/library/services/window-scrolling.service';
+import { ProjectsActions } from './store/projects.actions';
+import { ProjectsSelectors } from './store/projects.selectors';
 
 @Component({
   selector: 'dport-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
+  ngUnsubscribe$ = new Subject<void>();
+
   RVCT = ProjectName.RVCT;
   KEY_TERRAIN = ProjectName.KEY_TERRAIN;
   TRAINING_READINESS_PORTAL = ProjectName.TRAINING_READINESS_PORTAL;
 
-  showingProject: ProjectName;
-  numCols = 1;
+  numCols$: Observable<number>;
 
   gridColsByBreakpoint: Map<string, number> = new Map([
     ['gt-sm', 3],
@@ -24,18 +31,35 @@ export class ProjectsComponent implements OnInit {
   ]);
 
   constructor(
+    private store: Store,
     private mediaObserver: MediaObserver,
     private scrollServ: WindowScrollingService
   ) {}
 
   ngOnInit(): void {
-    this.mediaObserver.asObservable().subscribe((changes: MediaChange[]) => {
-      const change = changes.find((ch: MediaChange) =>
-        this.gridColsByBreakpoint.has(ch.mqAlias)
-      );
-      this.numCols = this.gridColsByBreakpoint.get(change.mqAlias);
-    });
+    this.numCols$ = this.store.select(ProjectsSelectors.projectListColCount);
 
+    // Scroll to top of page when component is created
     this.scrollServ.scrollToTop();
+
+    // Whenever window breakpoint is hit, update column count
+    this.mediaObserver
+      .asObservable()
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((changes: MediaChange[]) => {
+        const change = changes.find((ch: MediaChange) =>
+          this.gridColsByBreakpoint.has(ch.mqAlias)
+        );
+
+        this.store.dispatch(
+          ProjectsActions.setProjectListColCount({
+            numCols: this.gridColsByBreakpoint.get(change.mqAlias),
+          })
+        );
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe$.next();
   }
 }

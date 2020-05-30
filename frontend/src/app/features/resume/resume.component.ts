@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'dport-resume',
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResumeComponent implements OnInit {
   private isDesktopDevice;

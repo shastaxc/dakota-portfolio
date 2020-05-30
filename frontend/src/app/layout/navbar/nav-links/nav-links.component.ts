@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { closeSidenav } from '@/store/actions/layout.actions';
+import { LayoutActions } from '@/layout/store/layout.actions';
 
 @Component({
   selector: 'dport-nav-links',
   templateUrl: './nav-links.component.html',
   styleUrls: ['./nav-links.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavLinksComponent {
   @Input() isHorizontal: boolean;
@@ -14,6 +15,6 @@ export class NavLinksComponent {
   constructor(private store: Store) {}
 
   closeSidenav(): void {
-    this.store.dispatch(closeSidenav());
+    this.store.dispatch(LayoutActions.closeSidenav());
   }
 }

@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-
-import { ProjectName } from '@/library/constants/projects.const';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'dport-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-  showingProject: ProjectName = null;
-}
+export class HomeComponent {}
