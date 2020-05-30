@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { SidenavService } from '@/layout/sidenav.service';
+import { closeSidenav } from '@/store/actions/layout.actions';
 
 @Component({
   selector: 'dport-nav-links',
@@ -10,9 +11,9 @@ import { SidenavService } from '@/layout/sidenav.service';
 export class NavLinksComponent {
   @Input() isHorizontal: boolean;
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor(private store: Store) {}
 
   closeSidenav(): void {
-    this.sidenavService.closeSidenav();
+    this.store.dispatch(closeSidenav());
   }
 }

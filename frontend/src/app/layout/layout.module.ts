@@ -9,7 +9,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidenavInnardsComponent } from './sidenav-innards/sidenav-innards.component';
 import { LayoutComponent } from './layout.component';
 import { layoutRoutes } from './layout.routes';
-import { SidenavService } from './sidenav.service';
 
 const ROUTES = [...layoutRoutes];
 
@@ -26,7 +25,6 @@ const ROUTES = [...layoutRoutes];
     SidenavInnardsComponent,
     NavLinksComponent,
   ],
-  providers: [SidenavService],
   exports: [LayoutComponent],
 })
 export class LayoutModule {}

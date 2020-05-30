@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { SidenavService } from '../sidenav.service';
+import { closeSidenav, toggleSidenav } from '@/store/actions/layout.actions';
 
 @Component({
   selector: 'dport-navbar',
@@ -8,13 +9,13 @@ import { SidenavService } from '../sidenav.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  constructor(private sidenavService: SidenavService) {}
+  constructor(private store: Store) {}
 
   toggleSidenav(): void {
-    this.sidenavService.toggleSidenav();
+    this.store.dispatch(toggleSidenav());
   }
 
   closeSidenav(): void {
-    this.sidenavService.closeSidenav();
+    this.store.dispatch(closeSidenav());
   }
 }

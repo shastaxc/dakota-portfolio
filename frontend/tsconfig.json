@@ -23,6 +23,7 @@
       "@/layout/*": ["src/app/layout/*"],
       "@/library/*": ["src/app/library/*"],
       "@/shared/*": ["src/app/shared/*"],
+      "@/store/*": ["src/app/store/*"],
       "@/assets/*": ["src/assets/*"],
       "@/environments/*": ["src/environments/*"]
     }
