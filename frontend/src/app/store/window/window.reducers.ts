@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { isEqual } from 'lodash';
 
 import { initialWindowState, IWindowState } from './window.state';
 import { WindowActions } from '.';
