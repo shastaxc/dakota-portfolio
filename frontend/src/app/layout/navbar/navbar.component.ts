@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { LayoutActions } from '../store/layout.actions';
+import { LayoutActions } from '../store';
 
 @Component({
   selector: 'dport-navbar',

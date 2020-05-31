@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { LayoutActions } from '@/layout/store/layout.actions';
+import { LayoutActions } from '@/layout/store';
 
 @Component({
   selector: 'dport-nav-links',

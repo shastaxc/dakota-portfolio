@@ -5,8 +5,7 @@ import { Observable } from 'rxjs';
 
 import { ProjectName } from '@/library/constants/projects.const';
 import { WindowScrollingService } from '@/library/services/window-scrolling.service';
-import { ProjectsActions } from '../store/projects.actions';
-import { ProjectsSelectors } from '../store/projects.selectors';
+import { ProjectsActions, ProjectsSelectors } from '../store';
 
 @Component({
   selector: 'dport-project-details',

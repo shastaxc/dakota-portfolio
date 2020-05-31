@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { ProjectsActions } from './projects.actions';
+import * as ProjectsActions from './projects.actions';
 import { initialProjectsState, IProjectsState } from './projects.state';
 
 const _projectsReducer = createReducer(

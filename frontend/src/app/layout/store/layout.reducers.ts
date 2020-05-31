@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { LayoutActions } from './layout.actions';
+import * as LayoutActions from './layout.actions';
 import { ILayoutState, initialLayoutState } from './layout.state';
 
 const _layoutReducer = createReducer(

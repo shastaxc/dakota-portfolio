@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -13,8 +14,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { slideInAnimation } from '@/library/constants/animations.const';
-import { LayoutActions } from './store/layout.actions';
-import { LayoutSelectors } from './store/layout.selectors';
+import { LayoutActions, LayoutSelectors } from './store';
 
 @Component({
   selector: 'dport-layout',
@@ -40,7 +40,11 @@ export class LayoutComponent implements OnInit {
     return this.sidenavContainer.nativeElement;
   }
 
-  constructor(private store: Store, private mediaObserver: MediaObserver) {}
+  constructor(
+    private store: Store,
+    private mediaObserver: MediaObserver,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.isSidenavOpen$ = this.store.pipe(select(LayoutSelectors.isSidenavOpen));
@@ -49,8 +53,8 @@ export class LayoutComponent implements OnInit {
     this.mediaObserver
       .asObservable()
       .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe(() => {
-        // Whenever breakpoint changes, change state of headerHeight
+      .subscribe((ch) => {
+        console.log('changes', ch);
         const offset = this.navbarEl.offsetHeight;
         this.sidenavContainerEl.style.top = offset + 'px';
         this.sidenav.fixedTopGap = offset;
@@ -61,6 +65,7 @@ export class LayoutComponent implements OnInit {
       .subscribe((isOpen: boolean) => {
         if (!this.sidenav) return;
         isOpen ? this.sidenav.open() : this.sidenav.close();
+        this.changeDetector.detectChanges();
       });
   }
 
