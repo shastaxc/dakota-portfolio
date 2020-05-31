@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { MediaChange, MediaObserver } from '@angular/flex-layout';
-import { Store } from '@ngrx/store';
+import { MediaChange } from '@angular/flex-layout';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { ProjectName } from '@/library/constants/projects.const';
 import { WindowScrollingService } from '@/library/services/window-scrolling.service';
+import { WindowSelectors } from '@/store/window';
 import { ProjectsActions, ProjectsSelectors } from './store';
 
 @Component({
@@ -29,11 +30,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     ['xs', 1],
   ]);
 
-  constructor(
-    private store: Store,
-    private mediaObserver: MediaObserver,
-    private scrollServ: WindowScrollingService
-  ) {}
+  constructor(private store: Store, private scrollServ: WindowScrollingService) {}
 
   ngOnInit(): void {
     this.numCols$ = this.store.select(ProjectsSelectors.projectListColCount);
@@ -42,9 +39,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.scrollServ.scrollToTop();
 
     // Whenever window breakpoint is hit, update column count
-    this.mediaObserver
-      .asObservable()
-      .pipe(takeUntil(this.ngUnsubscribe$))
+    this.store
+      .pipe(select(WindowSelectors.breakpoints), takeUntil(this.ngUnsubscribe$))
       .subscribe((changes: MediaChange[]) => {
         const change = changes.find((ch: MediaChange) =>
           this.gridColsByBreakpoint.has(ch.mqAlias)

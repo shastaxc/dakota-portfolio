@@ -14,6 +14,7 @@ import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { AppEffects } from './store/app.effects';
 import { appMetaReducers, appReducers } from './store/app.reducers';
+import { WindowStoreModule } from './store/window/window.store.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -28,6 +29,7 @@ import { AppComponent } from './app.component';
     DeviceDetectorModule.forRoot(),
     ResumeModule,
     ProjectsModule,
+    WindowStoreModule,
     StoreModule.forRoot(appReducers, {
       metaReducers: appMetaReducers,
       runtimeChecks: {

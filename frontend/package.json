@@ -30,6 +30,7 @@
     "@ngrx/router-store": "^9.2.0",
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
+    "lodash": "^4.17.15",
     "ngx-device-detector": "^1.4.2",
     "ngx-extended-pdf-viewer": "^3.3.3",
     "rxjs": "^6.5.5",

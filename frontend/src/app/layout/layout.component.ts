@@ -1,12 +1,13 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MediaObserver } from '@angular/flex-layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -14,6 +15,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { slideInAnimation } from '@/library/constants/animations.const';
+import { WindowSelectors } from '@/store/window';
 import { LayoutActions, LayoutSelectors } from './store';
 
 @Component({
@@ -23,7 +25,7 @@ import { LayoutActions, LayoutSelectors } from './store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [slideInAnimation],
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   ngUnsubscribe$ = new Subject<void>();
 
   @ViewChild('navbar') navbar: ElementRef;
@@ -40,32 +42,31 @@ export class LayoutComponent implements OnInit {
     return this.sidenavContainer.nativeElement;
   }
 
-  constructor(
-    private store: Store,
-    private mediaObserver: MediaObserver,
-    private changeDetector: ChangeDetectorRef
-  ) {}
+  constructor(private store: Store, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.isSidenavOpen$ = this.store.pipe(select(LayoutSelectors.isSidenavOpen));
 
-    // Listen to changes in window breakpoints
-    this.mediaObserver
-      .asObservable()
-      .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe((ch) => {
-        console.log('changes', ch);
-        const offset = this.navbarEl.offsetHeight;
-        this.sidenavContainerEl.style.top = offset + 'px';
-        this.sidenav.fixedTopGap = offset;
-      });
-
+    // Controls the open and closing action of the sidenav based on state variable
     this.isSidenavOpen$
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((isOpen: boolean) => {
         if (!this.sidenav) return;
         isOpen ? this.sidenav.open() : this.sidenav.close();
-        this.changeDetector.detectChanges();
+        this.changeDetector.markForCheck();
+      });
+  }
+
+  ngAfterViewInit(): void {
+    // Keep top level containers aligned to avoid overlap/clipping
+    // Only checks when window size hits a breakpoint
+    this.store
+      .pipe(select(WindowSelectors.breakpoints), takeUntil(this.ngUnsubscribe$))
+      .subscribe(() => {
+        if (!this.navbar || !this.sidenavContainer || !this.sidenav) return;
+        const offset = this.navbarEl.offsetHeight;
+        this.sidenavContainerEl.style.top = offset + 'px';
+        this.sidenav.fixedTopGap = offset;
       });
   }
 
