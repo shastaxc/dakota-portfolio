@@ -18,7 +18,10 @@
             <div class="w-100 text-center">
               <a href="https://ste-rvct.com"
                  target="_blank">
-                <img src="/assets/images/RVCT-preview.jpg" />
+                <img *ngIf="(windowIsXs$ | async)"
+                     src="/assets/images/RVCT-preview_thumb.jpg" />
+                <img *ngIf="!(windowIsXs$ | async)"
+                     src="/assets/images/RVCT-preview.jpg" />
               </a>
             </div>
             <mat-divider [inset]="true"></mat-divider>
@@ -88,7 +91,10 @@
             <div class="w-100 text-center">
               <a href="https://keyterrain.io"
                  target="_blank">
-                <img src="/assets/images/KeyTerrain-preview.png" />
+                <img *ngIf="(windowIsXs$ | async)"
+                     src="/assets/images/KeyTerrain-preview_thumb.png" />
+                <img *ngIf="!(windowIsXs$ | async)"
+                     src="/assets/images/KeyTerrain-preview.png" />
               </a>
             </div>
             <mat-divider [inset]="true"></mat-divider>
@@ -151,7 +157,10 @@
             <div class="w-100 text-center">
               <a href="https://training-portal-app.shastaworks.com"
                  target="_blank">
-                <img src="/assets/images/TrainingPortal-preview.jpg" />
+                <img *ngIf="(windowIsXs$ | async)"
+                     src="/assets/images/TrainingPortal-preview_thumb.jpg" />
+                <img *ngIf="!(windowIsXs$ | async)"
+                     src="/assets/images/TrainingPortal-preview.jpg" />
               </a>
             </div>
             <mat-divider [inset]="true"></mat-divider>

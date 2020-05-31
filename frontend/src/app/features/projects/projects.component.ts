@@ -45,7 +45,6 @@ export class ProjectsComponent implements OnInit, OnDestroy {
         const change = changes.find((ch: MediaChange) =>
           this.gridColsByBreakpoint.has(ch.mqAlias)
         );
-
         this.store.dispatch(
           ProjectsActions.setProjectListColCount({
             numCols: this.gridColsByBreakpoint.get(change.mqAlias),
